@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpPower: 7
   speed: 5
+  fallDeath: -6
   fallDelay: 0.2
 --- !u!212 &40038746
 SpriteRenderer:
