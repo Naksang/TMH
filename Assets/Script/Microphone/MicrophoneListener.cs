@@ -24,6 +24,7 @@ public class MicrophoneListener : MonoBehaviour
     [SerializeField]
     private float pitch = 0;
 
+
     private float rmsValue;
     private float dbValue;
     private float pitchValue;
@@ -33,10 +34,12 @@ public class MicrophoneListener : MonoBehaviour
     private const float threshold = 0.02f;
 
     [SerializeField]
-    private Vector3 maxScale = new Vector3(3,3);
-    [SerializeField]
-    private Vector3 minScale = new Vector3(1,1);
+    private Vector3 maxScale = new Vector3(5, 5, 5);
 
+    private Vector3 minScale = new Vector3(1, 1, 1);
+
+    [SerializeField]
+    private float scaleSpeed = 1.0f;
 
     float[] _samples;
     private float[] _spectrum;
@@ -70,7 +73,7 @@ public class MicrophoneListener : MonoBehaviour
         }
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         if (stopMicrophoneListener)
         {
@@ -90,10 +93,24 @@ public class MicrophoneListener : MonoBehaviour
 
         loudness = GetAveragedVolume() * sensitivity;
 
-        player.transform.localScale = Vector3.Lerp(minScale, maxScale, loudness);
+        //家府 目咙 > 农扁 累酒咙
+        if (loudness > 0.1f && player.transform.localScale.x > minScale.x) 
+        {
+            //player.transform.localScale = new Vector3(player.transform.localScale.x - 1.0f,
+            //    player.transform.localScale.y - 1.0f, 0);
+            player.transform.localScale -= new Vector3(1.0f, 1.0f, 1.0f) * scaleSpeed * Time.deltaTime;
+        }
+        else if(loudness < 0.1f &&player.transform.localScale.x < maxScale.x)
+        {
+            //player.transform.localScale += new Vector3(player.transform.localScale.x + 1.0f,
+            //    player.transform.localScale.y + 1.0f, 0);
+            player.transform.localScale += new Vector3(1.0f, 1.0f, 1.0f) * scaleSpeed * Time.deltaTime;
+        }
 
         GetPitch();
     }
+
+
 
     float GetAveragedVolume()
     {
