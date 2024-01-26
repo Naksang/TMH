@@ -55,5 +55,7 @@ public class player : MonoBehaviour
         {
             jumpCount = 0;
         }
+        if(collision.gameObject.CompareTag("Spike"))
+            transform.position = initialPosition;
     }
 }
