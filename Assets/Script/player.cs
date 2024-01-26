@@ -5,11 +5,15 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     Rigidbody2D rigid;
+    Vector2 initialPosition;
 
     [SerializeField]
     private float jumpPower;
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float fallDeath= -6f;
+
 
     [SerializeField]
     private float fallDelay;
@@ -19,12 +23,16 @@ public class player : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        initialPosition = transform.position; // save Position
     }
 
     private void FixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
         rigid.velocity = new Vector2(h * speed, rigid.velocity.y);
+
+        if (gameObject.transform.position.y < fallDeath)
+            transform.position = initialPosition;
     }
 
     private void Update()
