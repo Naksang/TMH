@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class MicrophoneListener : MonoBehaviour
+public class MicrophoneManager : MonoBehaviour
 {
     [SerializeField]
     private AudioMixer masterMixer;
@@ -14,29 +12,35 @@ public class MicrophoneListener : MonoBehaviour
     private AudioSource audio;
 
     [SerializeField]
-    private GameObject player;
+    private Rigidbody2D playerRig;
 
+    [SerializeField]
     private float sensitivity = 100;
 
+    //public float loudness
+    //{
+    //    get { return loudness; }
+    //    set
+    //    {
+    //        loudness = value;
+    //    }
+    //}
     [SerializeField]
     private float loudness = 0;
 
     [SerializeField]
     private float pitch = 0;
 
+    [SerializeField]
     private float rmsValue;
+    [SerializeField]
     private float dbValue;
+    [SerializeField]
     private float pitchValue;
 
     private const int QSamples = 1024;
     private const float refValue = 0.1f;
     private const float threshold = 0.02f;
-
-    [SerializeField]
-    private Vector3 maxScale = new Vector3(3,3);
-    [SerializeField]
-    private Vector3 minScale = new Vector3(1,1);
-
 
     float[] _samples;
     private float[] _spectrum;
@@ -61,7 +65,7 @@ public class MicrophoneListener : MonoBehaviour
             StartMicrophoneListener();
 
             audio = GetComponent<AudioSource>();
-            audio.clip = Microphone.Start(null, true, 1000, 44100);
+            audio.clip = Microphone.Start(null, false, 1000, 44100);
             while (!(Microphone.GetPosition(null) > 0)) { };
             audio.Play();
             _samples = new float[QSamples];
@@ -90,7 +94,25 @@ public class MicrophoneListener : MonoBehaviour
 
         loudness = GetAveragedVolume() * sensitivity;
 
-        player.transform.localScale = Vector3.Lerp(minScale, maxScale, loudness);
+        if (loudness > 0 && loudness <= 100f)
+        {
+            //playerRig.AddForce(Vector2.up *  loudness, ForceMode2D.Impulse);
+            playerRig.AddForce(Vector2.up * 1.0f, ForceMode2D.Impulse);
+        }
+        else if (loudness > 100f && loudness <= 200f)
+        {
+            playerRig.AddForce(Vector2.up * 2.0f, ForceMode2D.Impulse);
+        }
+        else if (loudness > 200f && loudness <= 300f)
+        {
+            playerRig.AddForce(Vector2.up * 3.0f, ForceMode2D.Impulse);
+        }
+        else if (loudness > 300f && loudness <= 400f)
+        {
+            playerRig.AddForce(Vector2.up * 4.0f, ForceMode2D.Impulse);
+        }
+
+
 
         GetPitch();
     }
