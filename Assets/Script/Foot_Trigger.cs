@@ -7,7 +7,7 @@ public class Foot_Trigger : MonoBehaviour
     [SerializeField]
     private float JumpPower;
 
-    bool JJump = false;
+    //bool JJump = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,10 +20,10 @@ public class Foot_Trigger : MonoBehaviour
                 if (playerRigidbody != null)
                 {
                     playerRigidbody.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
-                    JJump = true;
+                    //JJump = true;
                 }
-                else
-                    JJump = false;
+                else;   
+                    //JJump = false;
             }
         }
     }
