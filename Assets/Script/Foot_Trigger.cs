@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,11 @@ public class Foot_Trigger : MonoBehaviour
                 else;   
                     //JJump = false;
             }
+        }
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            gameObject.GetComponentInParent<player>().JumpCount += 1;
         }
     }
 }

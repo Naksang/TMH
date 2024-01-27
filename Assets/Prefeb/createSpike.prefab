@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4010143142417949877}
   m_Layer: 0
   m_Name: spike
-  m_TagString: Untagged
+  m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 6497460298735128069}
   m_Layer: 0
   m_Name: createSpike
-  m_TagString: Spike
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

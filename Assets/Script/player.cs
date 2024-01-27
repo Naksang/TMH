@@ -20,9 +20,24 @@ public class player : MonoBehaviour
 
 
     [SerializeField]
+    private int maxJumpCount = 1;
+    private float _jumpCount = 0;
+
+    public float JumpCount
+    {
+        get { return _jumpCount; }
+        set {  _jumpCount  = value;
+            if (_jumpCount > maxJumpCount) _jumpCount = maxJumpCount;
+            else if (_jumpCount <0 ) _jumpCount = 0;
+            Debug.Log(_jumpCount);
+        }
+    }
+
+    [SerializeField]
     private float fallDelay;
 
-    float jumpCount = 0;
+
+    
 
     private void Awake()
     {
@@ -33,7 +48,6 @@ public class player : MonoBehaviour
         initialPosition = transform.position; // save Position
 
         transform.position = new Vector2(-12, -22);
-
     }
 
     private void FixedUpdate()
@@ -58,10 +72,11 @@ public class player : MonoBehaviour
 
         anim.SetBool("isWalk", Mathf.Abs(rigid.velocity.x) >= 0.1);
         anim.SetBool("isJump", Mathf.Abs(rigid.velocity.y) >= 0.1);
-        if (Input.GetButtonDown("Jump") && jumpCount == 0)
+        if (Input.GetButtonDown("Jump") && JumpCount > 0)
         {
-              rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            jumpCount++;
+            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            JumpCount -= 1;
+
             Invoke("ApplyDownwardForce", fallDelay);
         }
 
@@ -74,10 +89,10 @@ public class player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            jumpCount = 0;
-        }
+        //if (collision.gameObject.CompareTag("Ground"))
+        //{
+        //    jumpCount = 0;
+        //}
         if (collision.gameObject.CompareTag("Spike"))
         transform.position = initialPosition;   
     }
