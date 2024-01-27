@@ -24,6 +24,9 @@ public class player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         initialPosition = transform.position; // save Position
+
+        transform.position = new Vector2(-12, -22);
+
     }
 
     private void FixedUpdate()
@@ -56,15 +59,6 @@ public class player : MonoBehaviour
             jumpCount = 0;
         }
         if (collision.gameObject.CompareTag("Spike"))
-            transform.position = initialPosition;
-        //if (collision.gameObject.CompareTag("Button"))
-        //{
-        //    GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
-        //    foreach (GameObject wall in walls)
-        //    {
-        //        Destroy(wall);
-        //    }
-        //}
-            
+        transform.position = initialPosition;   
     }
-}
+     }

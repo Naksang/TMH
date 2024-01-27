@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3129838305090051460}
   - component: {fileID: 8282191745872249130}
   - component: {fileID: 6775320453558882807}
+  - component: {fileID: 2101582495769349856}
+  - component: {fileID: 8546533271959553722}
   m_Layer: 0
   m_Name: FootTrigger
   m_TagString: Untagged
@@ -109,6 +111,76 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!58 &2101582495769349856
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3628748835177134419}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.48, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
+--- !u!58 &8546533271959553722
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3628748835177134419}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.48, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &8929748771556886796
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,6 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7630306705573910327}
   - component: {fileID: 1462425655760946830}
+  - component: {fileID: 3331302848836355567}
   - component: {fileID: 8178336992112726302}
   - component: {fileID: 3202236850128710276}
   - component: {fileID: 8733421946513501924}
@@ -197,6 +270,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3331302848836355567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8929748771556886796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e708c27505ba8f048808ce851d5f3684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7630306705573910327}
+  cameras:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8178336992112726302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpPower: 10
   speed: 5
-  fallDeath: -6
+  fallDeath: -22
   fallDelay: 0.2
 --- !u!50 &3202236850128710276
 Rigidbody2D:
