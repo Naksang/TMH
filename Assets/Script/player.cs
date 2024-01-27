@@ -24,6 +24,9 @@ public class player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         initialPosition = transform.position; // save Position
+
+        transform.position = new Vector2(-12, -22);
+
     }
 
     private void FixedUpdate()
