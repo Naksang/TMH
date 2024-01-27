@@ -7,6 +7,11 @@ public class moveSpike : MonoBehaviour
     [SerializeField]
     private GameObject spike;
 
+    [SerializeField]
+    private Transform startPos;
+    [SerializeField]
+    private Transform endPos;
+
     void Start()
     {
         
