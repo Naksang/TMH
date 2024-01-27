@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
+    
     Rigidbody2D rigid;
+    SpriteRenderer sprend;
+    Animator anim;
+
     Vector2 initialPosition;
 
     [SerializeField]
@@ -23,6 +27,9 @@ public class player : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        sprend = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+
         initialPosition = transform.position; // save Position
 
         transform.position = new Vector2(-12, -22);
@@ -40,12 +47,25 @@ public class player : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetButtonDown("Horizontal")&& !anim.GetBool("isJump"))
+        {
+            sprend.flipX = Input.GetAxisRaw("Horizontal") > 0;
+        }
+        else
+        {
+            sprend.flipX = Input.GetAxisRaw("Horizontal") < 0;
+        }
+
+        anim.SetBool("isWalk", Mathf.Abs(rigid.velocity.x) >= 0.1);
+        anim.SetBool("isJump", Mathf.Abs(rigid.velocity.y) >= 0.1);
         if (Input.GetButtonDown("Jump") && jumpCount == 0)
         {
-            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+              rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             jumpCount++;
             Invoke("ApplyDownwardForce", fallDelay);
         }
+
+
     }
     private void ApplyDownwardForce()
     {
