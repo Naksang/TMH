@@ -49,11 +49,11 @@ public class player : MonoBehaviour
     {
         if (Input.GetButtonDown("Horizontal")&& !anim.GetBool("isJump"))
         {
-            sprend.flipX = Input.GetAxisRaw("Horizontal") < 0;
+            sprend.flipX = Input.GetAxisRaw("Horizontal") > 0;
         }
         else
         {
-            sprend.flipX = Input.GetAxisRaw("Horizontal") > 0;
+            sprend.flipX = Input.GetAxisRaw("Horizontal") < 0;
         }
 
         anim.SetBool("isWalk", Mathf.Abs(rigid.velocity.x) >= 0.1);
