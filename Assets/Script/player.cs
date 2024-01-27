@@ -51,11 +51,20 @@ public class player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             jumpCount = 0;
         }
-        if(collision.gameObject.CompareTag("Spike"))
+        if (collision.gameObject.CompareTag("Spike"))
             transform.position = initialPosition;
+        if (collision.gameObject.CompareTag("Button"))
+        {
+            GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+            foreach (GameObject wall in walls)
+            {
+                Destroy(wall);
+            }
+        }
+            
     }
 }
