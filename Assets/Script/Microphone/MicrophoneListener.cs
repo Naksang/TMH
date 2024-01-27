@@ -162,15 +162,12 @@ public class MicrophoneListener : MonoBehaviour
 
     void GetPitch()
     {
-        //GetComponent<AudioSource>().GetOutputData(_samples, 0);
-        float[] data = new float[256];
-        audio.GetOutputData(data, 0);
-        
+        GetComponent<AudioSource>().GetOutputData(_samples, 0); // fill array with samples
         int i;
         float sum = 0;
         for (i = 0; i < QSamples; i++)
         {
-            sum += data[i] * data[i];
+            sum += _samples[i] * _samples[i]; // sum squared samples
         }
         rmsValue = Mathf.Sqrt(sum / QSamples);
         dbValue = 20 * Mathf.Sqrt(rmsValue / refValue);
