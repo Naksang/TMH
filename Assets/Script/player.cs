@@ -63,7 +63,7 @@ public class player : MonoBehaviour
             foreach (GameObject wall in walls)
             {
                 Destroy(wall);
-            }
+            }   
         }
             
     }
