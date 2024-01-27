@@ -57,14 +57,14 @@ public class player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Spike"))
             transform.position = initialPosition;
-        if (collision.gameObject.CompareTag("Button"))
-        {
-            GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
-            foreach (GameObject wall in walls)
-            {
-                Destroy(wall);
-            }
-        }
+        //if (collision.gameObject.CompareTag("Button"))
+        //{
+        //    GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        //    foreach (GameObject wall in walls)
+        //    {
+        //        Destroy(wall);
+        //    }
+        //}
             
     }
 }

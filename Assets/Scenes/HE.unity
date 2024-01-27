@@ -398,9 +398,10 @@ MonoBehaviour:
   audio: {fileID: 0}
   player: {fileID: 859429788}
   loudness: 0
+  rimitTime: 3
   pitch: 0
   maxScale: {x: 5, y: 5, z: 0}
-  scaleSpeed: 8
+  scaleSpeed: 5
 --- !u!1 &859429788
 GameObject:
   m_ObjectHideFlags: 0
